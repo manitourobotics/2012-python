@@ -1,6 +1,9 @@
-
 import wpilib
 
+"""
+Need to begin to get autonomous period of game play opporational. Should be done by Friday.
+The new test harness that I am writing should also be done by then.
+"""
 
 """
 !!!Definition of controls!!! |

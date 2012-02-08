@@ -12,6 +12,10 @@ if wpilib.Joystick(2) = True,
      else:
           print "Joystick #2 is not opporational"
           
+if wpilib.Joystick(1) = False and
+   wpilib.Joystick(2) = False,
+          print "Tank drive is not opporational"
+          
 if wpilib.CANJaguar(3) = True,
      print "CanJaguar #3 is opporational"
      

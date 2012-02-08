@@ -41,5 +41,23 @@ if CANJaguar(7) = True,
      
      else:
           print "CANJaguar #7 is not opporational"
+          
+if CANJaguar(8) = True,
+     print "CanJaguar #8 is opporational"
+     
+     else:
+          print "CANJaguar #8 is not opporational"
+          
+if CANJaguar(9) = True,
+     print "CanJaguar #9 is opporational"
+     
+     else:
+          print "CANJaguar #9 is not opporational"
+          
+if CANJaguar(10) = True,
+     print "CanJaguar #10 is opporational"
+     
+     else:
+          print "CANJaguar #10 is not opporational"
 
 

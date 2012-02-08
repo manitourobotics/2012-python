@@ -63,5 +63,8 @@ if wpilib.CANJaguar(10) = True,
      
      else:
           print "CANJaguar #10 is not opporational"
+          
+if wpilib.CANJaguar = False,
+     print "Fix your damn code"
 
 

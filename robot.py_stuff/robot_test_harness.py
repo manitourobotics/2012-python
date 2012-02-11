@@ -34,6 +34,11 @@ def test(2):
      print 'Finished testing the launching system.'
            'The launching system is reliable '%' percent of the time and failed '%' tests of the '%'
 
+"""
+Acquisition Test                         |
+                                         V
+"""
+
 def test(3):
      print 'Begining to test the acquisition system'
      time.wait (2.0)

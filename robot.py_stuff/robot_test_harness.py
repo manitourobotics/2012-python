@@ -1,5 +1,5 @@
-import robot_pthon_new.py
 import time
+import unittest
 
 """
 Goals: Write the testing system for tank drive & launcher (acquisition) by Wendsday.
@@ -7,39 +7,22 @@ Goals: Write the testing system for tank drive & launcher (acquisition) by Wends
 
 
 sys.path.append('../')
-import metadata  as mod
+import robot_python_new as mod
 
 def suite():
 
    suite = unittest.TestSuite()
-   suite.addTest(unittest.makeSuite(TestSchema))
-   suite.addTest(unittest.makeSuite(TestStructType))
-   suite.addTest(unittest.makeSuite(TestStruct))
-   suite.addTest(unittest.makeSuite(TestElement))
-   suite.addTest(unittest.makeSuite(TestReports))
+   suite.addTest(unittest.makeSuite(TestTank))
+   
    return suite
 
-def test_tank(1):
-     print 'Begining to test tank drive'
-     time.wait (2.0)
-     
-     print 'Finished testing tank drive.'
-           'The tank drive is reliable '%' percent of the time and failed '%' tests of the '%'
 
-def test_launch(2):
-     print 'Begining to test the launching system'
-     time.wait (2.0)
-     
-     print 'Finished testing the launching system.'
-           'The launching system is reliable '%' percent of the time and failed '%' tests of the '%'
+class TestTank(unittest.TestCase):
+   
 
-def test_acquire(3):
-     print 'Begining to test the acquisition system'
-     time.wait (2.0)
-     
-     print 'Finished testing the acquisition system.'
-           'The acquisition system is reliable '%' percent of the time and failed '%' tests of the '%'
-           
+     def test_tank(self):
+          self.assertTrue(1==1)
+
 
 if __name__ == "__main__":
 

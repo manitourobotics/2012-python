@@ -1,4 +1,4 @@
-import robot_in_python.py
+import robot_pthon_new.py
 import time
 
 """
@@ -6,44 +6,36 @@ Goals: Write the testing system for tank drive & launcher by Wendsday. I should 
 """
 
 
-"""
-Tank Drive Test                    |
-                                   V
-"""
+sys.path.append('../')
+import metadata  as mod
 
-def test(1):
+def suite():
+
+   suite = unittest.TestSuite()
+   suite.addTest(unittest.makeSuite(TestSchema))
+   suite.addTest(unittest.makeSuite(TestStructType))
+   suite.addTest(unittest.makeSuite(TestStruct))
+   suite.addTest(unittest.makeSuite(TestElement))
+   suite.addTest(unittest.makeSuite(TestReports))
+   return suite
+
+def test_tank(1):
      print 'Begining to test tank drive'
      time.wait (2.0)
-     """
-     test
-     """
+     
      print 'Finished testing tank drive.'
            'The tank drive is reliable '%' percent of the time and failed '%' tests of the '%'
 
-"""
-Launcher Test                      |
-                                   V
-"""
-
-def test(2):
+def test_launch(2):
      print 'Begining to test the launching system'
      time.wait (2.0)
-     """
-     test
-     """
+     
      print 'Finished testing the launching system.'
            'The launching system is reliable '%' percent of the time and failed '%' tests of the '%'
 
-"""
-Acquisition Test                         |
-                                         V
-"""
-
-def test(3):
+def test_acquire(3):
      print 'Begining to test the acquisition system'
      time.wait (2.0)
-     """
-     test
-     """
+     
      print 'Finished testing the acquisition system.'
            'The acquisition system is reliable '%' percent of the time and failed '%' tests of the '%'

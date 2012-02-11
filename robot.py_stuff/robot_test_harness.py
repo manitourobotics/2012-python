@@ -39,3 +39,9 @@ def test_acquire(3):
      
      print 'Finished testing the acquisition system.'
            'The acquisition system is reliable '%' percent of the time and failed '%' tests of the '%'
+           
+
+if __name__ == "__main__":
+
+   runner = unittest.TextTestRunner(verbosity=2)
+   runner.run(suite())

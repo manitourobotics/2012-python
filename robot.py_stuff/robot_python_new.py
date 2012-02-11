@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import wpilib
 
 """
@@ -5,144 +7,91 @@ Need to begin to get autonomous period of game play opporational. Should be done
 The new test harness that I am writing should also be done by then.
 """
 
-"""
-!!!Definition of controls!!! |
-                             V
-"""
-
 lstick = wpilib.Joystick(1)
-
 rstick = wpilib.Joystick(2)
-
 leftFrontMotor = wpilib.CANJaguar(3)
-
 leftRearMotor = wpilib.CANJaguar(4)
-
 rightFrontMotor = wpilib.CANJaguar(5)
-
 rightRearMotor = wpilib.CANJaguar(6)
-
 rightTopMotor = wpilib.CANJaguar(7)
-
 leftTopMotor = wpilib.CANJaguar(8)
-
 TopMotor = wpilib.CANJaguar(9)
-
 BottomMotor = wpilib.CANJaguar(10)
-
 ltrigger = wpilib.Trigger(1)
-
 rtrigger = wpilib.Trigger(2)
-
 lbumper = wpilib.Bumper(1)
-
 rbumber = wpilib.Bumper(2)
 
-"""
-not sure if needed (yet) |
-                         V
-"""
 
-abutton = wpilib.
+def init():
 
-bbutton = wpilib.
+    #Joystick(1) = [leftFrontMotor, leftBackMotor]
+    #Joystick(2) = (rightFrontMotor, rightBackMotor)
+    #JoystickTrigger(1) = [LaunchMotor(1), LaunchMotor(2)]
+    #Trigger(1) = rightTopMotor
+    #Trigger(2) = leftTopMotor
+    #Bumper(1) = TopMotor
+    #Bumper(2) = BottomMotor
 
-xbutton = wpilib.
-
-ybutton = wpilib.
-
-"""
-not sure if needed (yet) |
-                         V
-"""
-
-padup = wpilib.
-
-paddown = wpilib.
-
-padleft = wpilib.
-
-padright = wpilib.
-
-"""
-Definintly needed |
-                  V
-"""
-
-Joystick(1) = leftFrontMotor, leftBackMotor
-
-Joystick(2) = rightFrontMotor, rightBackMotor
-
-JoystickTrigger(1) = LaunchMotor(1), LaunchMotor(2)
-
-Trigger(1) = rightTopMotor
-
-Trigger(2) = leftTopMotor
-
-Bumper(1) = TopMotor
-
-Bumper(2) = BottomMotor
-
-"""
-Driving |
-        V
-"""
-
-drive = wpilib.RobotDrive(leftFrontMotor, leftRearMotor,
-
-                          rightFrontMotor, rightRearMotor)
+    # Driving 
+    drive = wpilib.RobotDrive(leftFrontMotor, leftRearMotor,
+                              rightFrontMotor, rightRearMotor)
                           
-"""
-Launching the ball |
-                   V
-"""
-
-launch = wpilib.RobotLaunch(LaunchMotor(1), LaunchMotor(2))
+    # Launching the ball 
+    launch = wpilib.RobotLaunch(LaunchMotor(1), LaunchMotor(2))
 
 
-def checkRestart():
+def main():
 
+    init()
+
+    while True:
+
+        if wpilib.IsDisabled():
+            print("Running wait function")
+            wait_for_restart_or_healthy_state()
+            while wpilib.IsDisabled():
+                wpilib.Wait(0.01)
+        elif wpilib.IsAutonomous():
+            print("Running autonomous()")
+            autonomous()
+            while wpilib.IsAutonomous() and wpilib.IsEnabled():
+                wpilib.Wait(0.01)
+        else:
+            print("Running teleop()")
+            teleop()
+            while wpilib.IsOperatorControl() and wpilib.IsEnabled():
+                wpilib.Wait(0.01)
+
+
+def check_restart_button():
+    """ Allows user to remotely trigger a restart
+    """
     if lstick.GetRawButton(10):
-
         raise RuntimeError("Restart")
 
 
-def disabled():
-
+def wait_for_restart_or_healthy_state():
+    """ keep checking to see if user wants to restart
+        If user hits restart button it will cause an exception
+    """
     while wpilib.IsDisabled():
-
-        checkRestart()
-
-"""
-!!!Autonomous period of game play!!! |
-                                     V
-"""
+        check_restart_button()
 
 def autonomous():
 
     wpilib.GetWatchdog().SetEnabled(False)
-
     while wpilib.IsAutonomous() and wpilib.IsEnabled():
-
-        checkRestart()
-
+        check_restart_button()
         wpilib.Wait(0.01)
 
-"""
-!!!Teleoperated period of game play!!! |
-                                       V
-"""
 
 def teleop():
 
     dog = wpilib.GetWatchdog()
-
     dog.SetEnabled(True)
-
     dog.SetExpiration(0.25)
-
     shiftTime = wpilib.Timer()
-
 
     shiftTime.Start()
 
@@ -150,86 +99,32 @@ def teleop():
     while wpilib.IsOperatorControl() and wpilib.IsEnabled():
 
         dog.Feed()
-
-        checkRestart()
+        check_restart_button()
 
 
         if shiftTime.Get() > 0.3:
-
             shifter1.Set(False)
-
             shifter2.Set(False)
 
-        """
-        Shifter control |
-                        V
-        """
+        # Shifter control 
 
         if rstick.GetTrigger():
-
             shifter1.Set(True)
-
             shifter2.Set(False)
-
             shiftTime.Reset()
-
             highGear = True
-
         elif lstick.GetTrigger():
-
             shifter1.Set(False)
-
             shifter2.Set(True)
-
             shiftTime.Reset()
-
             highGear = False
 
-        """
-        Drive Control |
-                      V
-        """
-        
         drive.TankDrive(lstick, rstick)
-
 
         wpilib.Wait(0.04)
 
-"""
-Main Run |
-         V
-"""
 
-def run():
 
-    while 1:
 
-        if wpilib.IsDisabled():
-
-            print("Running disabled()")
-
-            disabled()
-
-            while wpilib.IsDisabled():
-
-                wpilib.Wait(0.01)
-
-        elif wpilib.IsAutonomous():
-
-            print("Running autonomous()")
-
-            autonomous()
-
-            while wpilib.IsAutonomous() and wpilib.IsEnabled():
-
-                wpilib.Wait(0.01)
-
-        else:
-
-            print("Running teleop()")
-
-            teleop()
-
-            while wpilib.IsOperatorControl() and wpilib.IsEnabled():
-
-                wpilib.Wait(0.01)
+if __name__ == '__main__':
+   main()

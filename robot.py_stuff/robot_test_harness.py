@@ -2,6 +2,11 @@ import robot_in_python.py
 import time
 
 """
+Goals: Write the testing system for tank drive & launcher by Wendsday. I should also get dad's example of one of his actual test harnesses
+"""
+
+
+"""
 Tank Drive Test                    |
                                    V
 """

@@ -16,15 +16,23 @@ def suite():
 
    suite = unittest.TestSuite()
    suite.addTest(unittest.makeSuite(TestTank))
+   suite.addTest(unittest.makesuite(TestLaunch))
    
    return suite
 
-
+#Tank Tester
 class TestTank(unittest.TestCase):
    
 
      def test_tank(self):
           self.assertTrue(1==1)
+          
+#Launch Tester
+class TestLaunch(unittest.TestCase):
+   
+   
+   def test_launch(self):
+      self.assertTrue(1==1)
 
 
 if __name__ == "__main__":

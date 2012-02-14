@@ -3,6 +3,7 @@
 import sys
 import time
 import unittest
+import pygame
 
 """
 Goals: Write the testing system for tank drive & launcher (acquisition) by Wendsday.

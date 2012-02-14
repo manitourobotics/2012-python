@@ -2,9 +2,8 @@
 
 import wpilib
 
-"""
-Need to begin to get autonomous period of game play opporational. Should be done by Friday.
-The new test harness that I am writing should also be done by then.
+"""Need to begin to get autonomous period of game play opporational. Should be done by Friday.
+   The new test harness that I am writing should also be done by then.
 """
 
 lstick = wpilib.Joystick(1)
@@ -24,9 +23,9 @@ rbumber = wpilib.Bumper(2)
 
 
 def init():
-    """
-    Not necassarily important                     |
-                                                  V
+    
+    """Not necassarily important                     |
+                                                     V
     """
     
     #Joystick(1) = [leftFrontMotor, leftBackMotor]

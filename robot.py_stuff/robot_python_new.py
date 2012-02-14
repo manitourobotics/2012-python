@@ -24,7 +24,11 @@ rbumber = wpilib.Bumper(2)
 
 
 def init():
-
+    """
+    Not necassarily important                     |
+                                                  V
+    """
+    
     #Joystick(1) = [leftFrontMotor, leftBackMotor]
     #Joystick(2) = (rightFrontMotor, rightBackMotor)
     #JoystickTrigger(1) = [LaunchMotor(1), LaunchMotor(2)]

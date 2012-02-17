@@ -40,7 +40,7 @@ class TestTank(unittest.TestCase):
           
 #Launch Tester
 class TestLaunch(unittest.TestCase):
-   
+   #get pygame.Joystick
    
    def test_launch(self):
       self.assertTrue(1==1)
